@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Noto+Sans:wght@400;700&display=swap');
+
+section {
+    padding-top: 100px; /* Додає відступ, щоб header не перекривав секцію */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+h1, h2, .futuristic {
+    font-family: 'Orbitron', sans-serif; /* Для заголовків або футуристичних елементів */
+}
+
+body {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+    font-family: 'Orbitron', sans-serif; /* Для заголовків або футуристичних елементів */
+}
+
+/* ----- HEADER (Фіксований, зменшений) ----- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Було 120px, стало 80px */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрує текст */
+    z-index: 1000; /* Щоб не перекривався іншими елементами */
+}
+/* ----- Текст у header ----- */
+header h1 {
+    font-size: 1.8rem;
+    color: white;
+}
+
+
+/* Контейнер для зірок */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Зірки */
+.star {
+    position: absolute;
+    background: white;
+    animation: fall linear infinite;
+    border-radius: 50%;
+}
+
+/* Анімація падіння */
+@keyframes fall {
+    from {
+        transform: translate(0, -50px) rotate(0deg);
+        opacity: var(--opacity);
+    }
+    to {
+        transform: translate(var(--x-move, 0px), 100vh) rotate(var(--rotate, 0deg));
+        opacity: 0;
+    }
+}
+
+/* ----- Навігація в header ----- */
+/* Стилі для звичайної навігації */
+/* Навігація */
+nav {
+    position: absolute;
+    right: 20px; /* Розташовуємо весь блок навігації праворуч */
+    display: flex;
+    align-items: center;
+}
+
+/* Кнопки меню */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Стилі для бургер-меню */
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    margin-left: 20px; /* Відступ ліворуч від кнопок меню */
+}
+
+.burger span {
+    width: 30px;
+    height: 3px;
+    background: white;
+    transition: 0.3s;
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 80px;
+        right: 20px; /* Перемістити меню вправо */
+        width: 150px;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .burger {
+        display: flex;
+        position: absolute;
+        right: 20px; /* Бургер-меню теж розміщуємо праворуч */
+    }
+}
+
+/* ----- ГОЛОВНИЙ ЕКРАН ----- */
+#hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ----- ГОЛОВНЕ ФОТО (Адаптивність та ефекти) ----- */
+.photo img {
+    width: 100%;
+    max-width: 400px; /* Розмір фото обмежений на великих екранах */
+    height: auto;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Плавні ефекти */
+}
+
+/* ----- Адаптація для мобільних пристроїв ----- */
+@media (max-width: 768px) {
+    .photo img {
+        max-width: 80%;  /* Фото буде меншого розміру на мобільних */
+    }
+}
+
+.photo {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.photo:hover {
+    transform: scale(1.05); /* Збільшує фото разом із паралелограмом */
+}
+
+.parallelogram {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateY( -4px) translateX( 9%) skew(-25deg); /* Нахиляємо на 20 градусів */
+    width: 1000px;  /* Ширина */
+    height: 1000px; /* Висота */
+    background: rgba(255, 255, 255, 0.2); /* Колір */
+    z-index: -1; /* Щоб було позаду фото */
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.hero-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    width: 45%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+}
+
+.text h2 {
+    font-size: 2rem;
+}
+
+.text p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* ----- ПРО МЕНЕ ----- */
+#about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+}
+
+.about-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.animation img {
+    max-width: 250px;
+}
+
+/* ----- ПОРТФОЛІО ----- */
+#portfolio {
+    padding: 60px 10%;
+}
+
+.portfolio-buttons button {
+    padding: 10px 20px;
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.portfolio-buttons button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ----- КОНТАКТИ ----- */
+#contacts {
+    padding: 60px;
+}
+
+.socials a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ----- АНІМАЦІЯ ПОЯВИ БЛОКІВ ----- */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0 20px; /* Додає відступи по боках */
+    }
+
+    .text,
+    .about-content,
+    .portfolio-buttons,
+    .socials {
+        padding: 0 15px; /* Додає відступи для контенту */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Зменшує заголовки */
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem; /* Зменшує текст у навігації */
+        padding: 8px 12px; /* Робить кнопки трохи компактнішими */
+    }
+}
